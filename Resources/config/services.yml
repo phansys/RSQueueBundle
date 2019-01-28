@@ -18,12 +18,18 @@ services:
         parent: rs_queue.service
         public: true
 
+    RSQueue\Services\Consumer: "@rs_queue.consumer"
+
     rs_queue.producer:
         class: RSQueue\Services\Producer
         parent: rs_queue.service
         public: true
 
+    RSQueue\Services\Producer: "@rs_queue.producer"
+
     rs_queue.publisher:
         class: RSQueue\Services\Publisher
         parent: rs_queue.service
         public: true
+
+    RSQueue\Services\Publisher: "@rs_queue.publisher"
