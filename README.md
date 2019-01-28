@@ -3,8 +3,8 @@ RSQueueBundle for Symfony
 ### Simple queuing system based on Redis
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/78931ad8-b016-4b5b-9b45-c5a5767fbd9e/mini.png)](https://insight.sensiolabs.com/projects/78931ad8-b016-4b5b-9b45-c5a5767fbd9e)
-[![Build Status](https://secure.travis-ci.org/mmoreram/RSQueueBundle.png?branch=master)](http://travis-ci.org/mmoreram/rsqueue-bundle)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mmoreram/RSQueueBundle/badges/quality-score.png?s=290f904ff14fb72d9d40288682949b3de88f99f9)](https://scrutinizer-ci.com/g/mmoreram/RSQueueBundle/)
+[![Build Status](https://secure.travis-ci.org/RSQueue/RSQueueBundle.png?branch=master)](http://travis-ci.org/RSQueue/RSQueueBundle)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/RSQueue/RSQueueBundle/badges/quality-score.png?s=290f904ff14fb72d9d40288682949b3de88f99f9)](https://scrutinizer-ci.com/g/RSQueue/RSQueueBundle/)
 
 Table of contents
 -----
@@ -38,7 +38,7 @@ make
 
 ## Installing [PHPRedis](https://github.com/nicolasff/phpredis)
 
-phpredis extension is necessary to be installed in your server.  
+phpredis extension is necessary to be installed in your server.
 Otherwise composer will alert you.
 
 ``` bash
@@ -54,24 +54,11 @@ echo "extension=redis.so" >> `php --ini | grep "Loaded Configuration" | sed -e "
 
 ## Installing [RSQueue](http://rsqueue.com)
 
-You have to add require line into you composer.json file
-
-``` yml
-"require": {
-    "php": ">=5.3.3",
-    "symfony/symfony": "2.3.*",
-    ...
-    "mmoreram/rsqueue-bundle": "dev-master"
-},
-```
-
-Then you have to use composer to update your project dependencies
-
 ``` bash
-php composer.phar update
+composer require mmoreram/rsqueue-bundle:^1.0@dev
 ```
 
-And register the bundle in your appkernel.php file
+Register the bundle in your `AppKernel.php` file
 
 ``` php
 return array(
@@ -83,8 +70,8 @@ return array(
 
 ## Configuration
 
-In this first version, all conections are localhost:6379, but as soon as posible connections will be configurable.  
-You need to configure all queues and serializer.  
+In this first version, all conections are localhost:6379, but as soon as posible connections will be configurable.
+You need to configure all queues and serializer.
 By default serializer has the value 'Json', but also 'PHP' value can be used. Also custom serializer can be implemented by extending default serializer interface. Then you need to add namespace of class into the rs_queue.serializer parameter.
 
 ``` yml
@@ -108,7 +95,7 @@ rs_queue:
 
 Producers/Consumers
 -----
-Producer/consumer model allows you to produce elements into one/many queues by using default rsqueue producer service.  
+Producer/consumer model allows you to produce elements into one/many queues by using default rsqueue producer service.
 One element is pushed into one queue so one and only one consumer will pop and treat this element.
 
 ``` php
@@ -178,7 +165,7 @@ class TestConsumerCommand extends ConsumerCommand
 Publishers/Subscribers
 -----
 This model allows data broadcasting. This means that one or more Subscribers will treat all elements of the queue, but only if they are listening just in the moment publisher publish them.
-    
+
 ``` php
 $this->container->get("rs_queue.publisher")->publish("audios", "this is my audio");
 ```
@@ -350,10 +337,10 @@ const RSQUEUE_PUBLISHER = 'rs_queue.publisher';
 Contributing
 -----
 
-All code is Symfony2 Code formatted, so every pull request must validate phpcs
-standards. You should read 
-[Symfony2 coding standards](http://symfony.com/doc/current/contributing/code/standards.html)
-and install [this](https://github.com/opensky/Symfony2-coding-standard) 
+All code is Symfony Code formatted, so every pull request must validate phpcs
+standards. You should read
+[Symfony coding standards](https://symfony.com/doc/current/contributing/code/standards.html)
+and install [this](https://github.com/opensky/Symfony2-coding-standard)
 CodeSniffer to check all code is validated.
 
 There is also a policy for contributing to this project. All pull request must
@@ -364,6 +351,6 @@ If you'd like to contribute, please read the [Contributing Code][1] part of the
 documentation. If you're submitting a pull request, please follow the guidelines
 in the [Submitting a Patch][2] section and use the [Pull Request Template][3].
 
-[1]: http://symfony.com/doc/current/contributing/code/index.html
-[2]: http://symfony.com/doc/current/contributing/code/patches.html#check-list
-[3]: http://symfony.com/doc/current/contributing/code/patches.html#make-a-pull-request
+[1]: https://symfony.com/doc/current/contributing/code/index.html
+[2]: https://symfony.com/doc/current/contributing/code/patches.html#check-list
+[3]: https://symfony.com/doc/current/contributing/code/patches.html#make-a-pull-request

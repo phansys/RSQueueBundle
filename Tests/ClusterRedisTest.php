@@ -31,7 +31,7 @@ class ClusterRedisTest extends RSQueueFunctionalTest
     {
         return [
             'cluster' => true,
-            'port' => 30001,
+            'port' => 7001,
         ];
     }
 }
